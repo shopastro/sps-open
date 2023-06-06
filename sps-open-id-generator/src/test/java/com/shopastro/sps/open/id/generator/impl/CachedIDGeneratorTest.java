@@ -19,7 +19,7 @@ class CachedIDGeneratorTest {
     @Test
     public void testNewId() {
         long id = cachedIDGenerator.nextId();
-//        System.out.println(id);
+        System.out.println(id);
         assertNotNull(id);
     }
 }

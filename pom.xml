@@ -10,9 +10,12 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>sps-open-share</module>
+        <module>sps-open-datasource</module>
         <module>sps-open-id-generator</module>
-        <module>sps-open-sample-center</module>
-
+        <module>sps-open-template-center</module>
+        <module>sample/sps-open-sample-api</module>
+        <module>sample/sps-open-sample-center</module>
     </modules>
 
     <properties>

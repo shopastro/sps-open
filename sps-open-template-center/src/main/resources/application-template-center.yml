@@ -1,0 +1,26 @@
+spring:
+  config:
+    import: classpath:application-id-generator.yml
+
+
+dubbo:
+  registry:
+    register: true
+    protocol: zookeeper
+    address: ${zk_address}
+  application:
+    name: sps-open-sample-center
+  consumer:
+    timeout: 10000
+    retries: 0
+  protocol:
+    name: dubbo
+    threadname: dubbo-thread
+    threadpool: eager
+    dispatcher: message
+    threads: 200
+    corethreads: 50
+    queues: 2000
+  service:
+    shutdown:
+      wait: 60

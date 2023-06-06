@@ -1,6 +1,6 @@
 spring:
   config:
-    import: classpath:application-id-generator.yml
+    import: classpath:application-datasource.yml
   datasource:
     url: jdbc:mysql://dev.sa:3306/sps
     username: admin

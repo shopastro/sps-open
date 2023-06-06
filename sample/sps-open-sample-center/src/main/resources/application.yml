@@ -1,0 +1,10 @@
+spring:
+  config:
+    import: classpath:application-template-center.yml
+  application:
+    name: sps-open-sample-center
+  datasource:
+    url: jdbc:mysql://dev.sa:3306/sps
+    username: admin
+    password: astro1tNXr
+
