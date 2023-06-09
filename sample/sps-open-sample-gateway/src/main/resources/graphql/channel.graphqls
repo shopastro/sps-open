@@ -1,0 +1,9 @@
+type Channel implements ObjectWithMetadata{
+    id: ID!
+    metadata: [MetadataItem!]!
+    created: DateTime!
+    updatedAt: DateTime!
+    pspId: String!
+    merchantId: String!
+    clientId: String!
+}

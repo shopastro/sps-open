@@ -1,0 +1,76 @@
+type PaymentOrder implements ObjectWithMetadata{
+    id: ID!
+    metadata: [MetadataItem!]!
+    created: DateTime!
+    updatedAt: DateTime!
+    customer: Customer!
+    channel: Channel!
+    billingAddress: Address
+    shippingAddress: Address
+}
+
+type PaymentOrderTransaction implements ObjectWithMetadata{
+    id: ID!
+    metadata: [MetadataItem!]!
+    created: DateTime!
+    updatedAt: DateTime!
+    lines: [PaymentOrderLine!]!
+
+}
+
+type PaymentOrderThirdDetail implements ObjectWithMetadata{
+    id: ID!
+    metadata: [MetadataItem!]!
+    created: DateTime!
+    updatedAt: DateTime!
+}
+
+type Refund implements ObjectWithMetadata{
+    id: ID!
+    metadata: [MetadataItem!]!
+    created: DateTime!
+    updatedAt: DateTime!
+}
+
+type Dispute implements ObjectWithMetadata{
+    id: ID!
+    metadata: [MetadataItem!]!
+    created: DateTime!
+    updatedAt: DateTime!
+}
+
+type ChargeBackOrder implements ObjectWithMetadata{
+    id: ID!
+    metadata: [MetadataItem!]!
+    created: DateTime!
+    updatedAt: DateTime!
+}
+
+type Address implements ObjectWithMetadata {
+    id: ID!
+    metadata: [MetadataItem!]!
+    created: DateTime!
+    updatedAt: DateTime!
+    firstName: String!
+    lastName: String!
+    companyName: String!
+    streetAddress1: String!
+    streetAddress2: String!
+    city: String!
+    cityArea: String!
+    postalCode: String!
+    country: CountryDisplay!
+    countryArea: String!
+    phone: String
+    isDefaultShippingAddress: Boolean
+    isDefaultBillingAddress: Boolean
+}
+
+type PaymentOrderLine implements ObjectWithMetadata{
+    id: ID!
+    metadata: [MetadataItem!]!
+    created: DateTime!
+    updatedAt: DateTime!
+    item: Item!
+
+}

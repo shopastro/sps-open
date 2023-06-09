@@ -1,0 +1,1 @@
+GraphQL https://spec.graphql.org/October2021/

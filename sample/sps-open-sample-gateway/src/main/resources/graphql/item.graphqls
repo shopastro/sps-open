@@ -1,0 +1,8 @@
+type Item implements ObjectWithMetadata{
+    id: ID!
+    metadata: [MetadataItem!]!
+    created: DateTime!
+    updatedAt: DateTime!
+    sku: String!
+    externalReference: String
+}

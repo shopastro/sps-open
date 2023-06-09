@@ -1,0 +1,25 @@
+scalar DateTime
+
+interface ObjectWithMetadata {
+    id: ID!
+    metadata: [MetadataItem!]!
+    created: DateTime!
+    updatedAt: DateTime!
+}
+
+type MetadataItem {
+    key: String!
+    value: String!
+}
+
+type Money{
+    currency: String!
+    amount: Float!
+}
+
+type CountryDisplay {
+    code: String!
+    country: String!
+}
+
+

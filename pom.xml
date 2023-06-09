@@ -14,8 +14,9 @@
         <module>sps-open-datasource</module>
         <module>sps-open-id-generator</module>
         <module>sps-open-template-center</module>
-        <module>sample/sps-open-sample-api</module>
-        <module>sample/sps-open-sample-center</module>
+<!--        <module>sample/sps-open-sample-api</module>-->
+<!--        <module>sample/sps-open-sample-center</module>-->
+<!--        <module>sample/sps-open-sample-gateway</module>-->
     </modules>
 
     <properties>
@@ -23,5 +24,14 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
+
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub OWNER Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/shopastro/app-template</url>
+        </repository>
+    </distributionManagement>
 
 </project>

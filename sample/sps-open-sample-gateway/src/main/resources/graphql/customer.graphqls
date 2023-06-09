@@ -1,0 +1,23 @@
+type Customer implements ObjectWithMetadata {
+    id: ID!
+    metadata: [MetadataItem!]!
+    created: DateTime!
+    updatedAt: DateTime!
+    email: String!
+    firstName: String!
+    lastName: String!
+    isStaff: Boolean!
+    isActive: Boolean!
+    addresses: [Address!]!
+    languageCode: String!
+    defaultShippingAddress: Address
+    defaultBillingAddress: Address
+    storedPaymentMethod: [CustomerPaymentMethod!]
+}
+
+type CustomerPaymentMethod implements ObjectWithMetadata {
+    id: ID!
+    metadata: [MetadataItem!]!
+    created: DateTime!
+    updatedAt: DateTime!
+}
