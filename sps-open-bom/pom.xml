@@ -46,6 +46,12 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.shopastro.sps.open</groupId>
+                <artifactId>sps-open-template-resource</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>

@@ -14,6 +14,7 @@
         <module>sps-open-datasource</module>
         <module>sps-open-id-generator</module>
         <module>sps-open-template-center</module>
+        <module>sps-open-template-resource</module>
 <!--        <module>sample/sps-open-sample-api</module>-->
 <!--        <module>sample/sps-open-sample-center</module>-->
 <!--        <module>sample/sps-open-sample-gateway</module>-->
