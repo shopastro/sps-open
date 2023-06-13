@@ -1,4 +1,4 @@
-package com.shopastro.sps.open.template.resource.center;
+package com.shopastro.sps.open.template.center;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
