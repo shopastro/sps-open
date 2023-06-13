@@ -9,7 +9,7 @@ dubbo:
     protocol: zookeeper
     address: ${zk_address}
   application:
-    name: sps-open-sample-center
+    name: ${APP_NAME:notSet}
   consumer:
     timeout: 10000
     retries: 0

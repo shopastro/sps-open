@@ -1,4 +1,4 @@
-package com.shopastro.sps.open.template;
+package com.shopastro.sps.open.template.resource;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

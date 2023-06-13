@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.shopastro.sps.open.template.ResourceAutoConfiguration
+com.shopastro.sps.open.template.resource.ResourceAutoConfiguration

@@ -1,10 +1,8 @@
-package com.shopastro.sps.open.template;
+package com.shopastro.sps.open.template.resource;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author ye.ly@shopastro-inc.com
