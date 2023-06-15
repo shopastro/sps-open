@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -25,7 +26,8 @@ public abstract class BaseDataObjectWithJsonColumn implements InjectIdSupport {
 
     String status;
 
-    boolean deleted;
+    @Builder.Default
+    String isDeleted = "N";
 
     @JSONField(serialize = false)
     public String getJsonData() {
@@ -37,11 +39,4 @@ public abstract class BaseDataObjectWithJsonColumn implements InjectIdSupport {
         BeanUtils.copyProperties(obj, this);
     }
 
-    public String getIsDeleted() {
-        return deleted ? "Y" : "N";
-    }
-
-    public void setIsDeleted(String val) {
-        deleted = "Y".equals(val);
-    }
 }
