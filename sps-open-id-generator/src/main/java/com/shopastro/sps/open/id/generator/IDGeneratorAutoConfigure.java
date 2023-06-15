@@ -1,5 +1,6 @@
 package com.shopastro.sps.open.id.generator;
 
+import com.shopastro.sps.open.id.generator.aop.InjectIdAspect;
 import com.shopastro.sps.open.id.generator.impl.CachedIDGenerator;
 import com.shopastro.sps.open.id.generator.impl.DefaultIDGenerator;
 import com.shopastro.sps.open.id.generator.impl.UidProperties;
@@ -21,31 +22,37 @@ import org.springframework.context.annotation.Lazy;
  * @date 2019.02.20 10:57
  */
 @Configuration
-@ConditionalOnClass({ DefaultIDGenerator.class, CachedIDGenerator.class })
-@MapperScan({ "com.shopastro.sps.open.id.generator.worker.dao" })
+@ConditionalOnClass({DefaultIDGenerator.class, CachedIDGenerator.class})
+@MapperScan({"com.shopastro.sps.open.id.generator.worker.dao"})
 @EnableConfigurationProperties(UidProperties.class)
 public class IDGeneratorAutoConfigure {
 
-	@Autowired
-	private UidProperties uidProperties;
+    @Autowired
+    private UidProperties uidProperties;
 
-	@Bean
-	@ConditionalOnMissingBean
-	@Lazy
-	DefaultIDGenerator DefaultIDGenerator() {
-		return new DefaultIDGenerator(uidProperties);
-	}
+    @Bean
+    @ConditionalOnMissingBean
+    @Lazy
+    DefaultIDGenerator DefaultIDGenerator() {
+        return new DefaultIDGenerator(uidProperties);
+    }
 
-	@Bean
-	@ConditionalOnMissingBean
-	@Lazy
-	CachedIDGenerator cachedUidGenerator() {
-		return new CachedIDGenerator(uidProperties);
-	}
+    @Bean
+    @ConditionalOnMissingBean
+    @Lazy
+    CachedIDGenerator cachedUidGenerator() {
+        return new CachedIDGenerator(uidProperties);
+    }
 
-	@Bean
-	@ConditionalOnMissingBean
-	WorkerIdAssigner workerIdAssigner() {
-		return new DisposableWorkerIdAssigner();
-	}
+    @Bean
+    @ConditionalOnMissingBean
+    WorkerIdAssigner workerIdAssigner() {
+        return new DisposableWorkerIdAssigner();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    InjectIdAspect InjectIdAspect(CachedIDGenerator cachedIDGenerator) {
+        return new InjectIdAspect(cachedIDGenerator);
+    }
 }
