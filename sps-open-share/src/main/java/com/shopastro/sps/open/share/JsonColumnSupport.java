@@ -5,24 +5,15 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Sets;
-import lombok.*;
-import lombok.experimental.SuperBuilder;
 import org.springframework.beans.BeanUtils;
 
-import java.util.Date;
+import java.io.Serializable;
 import java.util.Set;
-
 
 /**
  * @author ye.ly@shopastro-inc.com
  */
-@EqualsAndHashCode(callSuper = true)
-@Data
-@SuperBuilder
-@AllArgsConstructor
-public class BaseDataObjectWithJsonColumn extends BaseDataObject {
-
-
+public abstract class JsonColumnSupport implements Serializable {
     @JsonIgnore
     @JSONField(serialize = false)
     public String getJsonData() {
