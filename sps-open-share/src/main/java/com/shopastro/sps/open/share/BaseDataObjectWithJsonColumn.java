@@ -5,10 +5,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Sets;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.beans.BeanUtils;
 
@@ -18,19 +15,13 @@ import java.util.Set;
 /**
  * @author ye.ly@shopastro-inc.com
  */
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @Data
 @SuperBuilder
-@NoArgsConstructor
 @AllArgsConstructor
-public abstract class BaseDataObjectWithJsonColumn implements InjectIdSupport {
-    Long id;
-    Date gmtCreate;
-    Date gmtModified;
+public class BaseDataObjectWithJsonColumn extends BaseDataObject {
 
-    String status;
-
-    @Builder.Default
-    String isDeleted = "N";
 
     @JsonIgnore
     @JSONField(serialize = false)
