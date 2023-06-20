@@ -19,9 +19,12 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @SuperBuilder
+@NoArgsConstructor
 @AllArgsConstructor
 public class BaseDataObjectWithJsonColumn extends BaseDataObject {
 
+    @Builder.Default
+    String modelVersion = "v1";
 
     @JsonIgnore
     @JSONField(serialize = false)
