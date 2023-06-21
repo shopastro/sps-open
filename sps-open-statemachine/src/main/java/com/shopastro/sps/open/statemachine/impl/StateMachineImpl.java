@@ -71,6 +71,7 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
             }
             beforeFireEventCallback.before(sourceStateId, event, ctx);
             state = transition.transit(ctx, false);
+            targetStateId=state.getId();
         } catch (Throwable e) {
             ex = e;
             throw e;

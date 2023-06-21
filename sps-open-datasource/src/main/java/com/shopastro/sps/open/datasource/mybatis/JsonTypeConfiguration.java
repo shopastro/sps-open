@@ -19,6 +19,7 @@ public class JsonTypeConfiguration implements ConfigurationCustomizer {
         for (Class type : jsonTypeRegister.types) {
             configuration.getTypeHandlerRegistry().register(type, null, new JsonTypeHandler<>(type));
         }
-
+        configuration.getTypeHandlerRegistry().register(Boolean.class, null, new BooleanTypeHandler());
+        configuration.getTypeHandlerRegistry().register(boolean.class, null, new BooleanTypeHandler());
     }
 }

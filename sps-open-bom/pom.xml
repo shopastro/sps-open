@@ -47,6 +47,13 @@
 
             <dependency>
                 <groupId>com.shopastro.sps.open</groupId>
+                <artifactId>sps-open-statemachine-persister</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.shopastro.sps.open</groupId>
                 <artifactId>sps-open-test</artifactId>
                 <version>${project.version}</version>
             </dependency>
