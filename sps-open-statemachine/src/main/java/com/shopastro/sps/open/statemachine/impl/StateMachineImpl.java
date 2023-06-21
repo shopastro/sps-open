@@ -56,25 +56,26 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
 
     @Override
     public S fireEvent(S sourceStateId, E event, C ctx) {
-        isReady();
-        Transition<S, E, C> transition = routeTransition(sourceStateId, event, ctx);
-
-        if (transition == null) {
-            Debugger.debug("There is no Transition for " + event);
-            failCallback.onFail(sourceStateId, event, ctx);
-            return sourceStateId;
-        }
-
-        State<S, E, C> state = null;
-        beforeFireEventCallback.before(sourceStateId, event, ctx);
+        State<S,E,C> state = null;
+        S targetStateId = null;
         Throwable ex = null;
+
         try {
+            isReady();
+            Transition<S, E, C> transition = routeTransition(sourceStateId, event, ctx);
+
+            if (transition == null) {
+                Debugger.debug("There is no Transition for " + event);
+                failCallback.onFail(sourceStateId, event, ctx);
+                targetStateId = sourceStateId;
+            }
+            beforeFireEventCallback.before(sourceStateId, event, ctx);
             state = transition.transit(ctx, false);
         } catch (Throwable e) {
             ex = e;
             throw e;
         } finally {
-            afterFireEventCallback.after(sourceStateId, state == null ? null : state.getId(), event, ctx,ex);
+            afterFireEventCallback.after(sourceStateId, targetStateId, event, ctx, ex);
         }
 
         return state == null ? null : autoTrigger(state, ctx);
