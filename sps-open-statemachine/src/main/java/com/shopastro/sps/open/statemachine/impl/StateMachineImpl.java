@@ -65,10 +65,19 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
             return sourceStateId;
         }
 
+        State<S, E, C> state = null;
         beforeFireEventCallback.before(sourceStateId, event, ctx);
-        State<S, E, C> state = transition.transit(ctx, false);
-        afterFireEventCallback.after(sourceStateId, state.getId(), event, ctx);
-        return autoTrigger(state, ctx);
+        Throwable ex = null;
+        try {
+            state = transition.transit(ctx, false);
+        } catch (Throwable e) {
+            ex = e;
+            throw e;
+        } finally {
+            afterFireEventCallback.after(sourceStateId, state == null ? null : state.getId(), event, ctx,ex);
+        }
+
+        return state == null ? null : autoTrigger(state, ctx);
     }
 
     private S autoTrigger(State<S, E, C> state, C ctx) {

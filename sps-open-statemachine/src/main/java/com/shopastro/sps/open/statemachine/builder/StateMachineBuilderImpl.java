@@ -25,8 +25,10 @@ public class StateMachineBuilderImpl<S, E, C> implements StateMachineBuilder<S, 
     private final StateMachineImpl<S, E, C> stateMachine = new StateMachineImpl<>(stateMap);
     private FailCallback<S, E, C> failCallback = new NumbFailCallback<>();
 
-    private BeforeFireEventCallback<S, E, C> beforeFireEventCallback = (sourceStateId, event, ctx) -> {};
-    private AfterFireEventCallback<S, E, C> afterFireEventCallback = (sourceStateId,targetStateId, event, ctx) -> {};
+    private BeforeFireEventCallback<S, E, C> beforeFireEventCallback = (sourceStateId, event, ctx) -> {
+    };
+    private AfterFireEventCallback<S, E, C> afterFireEventCallback = (sourceStateId, targetStateId, event, ctx, throwable) -> {
+    };
 
     private Set<E> autoEvents;
 
