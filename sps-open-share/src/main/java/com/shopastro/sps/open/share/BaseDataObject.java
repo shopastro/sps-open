@@ -18,6 +18,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BaseDataObject implements InjectIdSupport, Serializable {
+
     Long id;
     Date gmtCreate;
     Date gmtModified;
@@ -25,5 +26,5 @@ public class BaseDataObject implements InjectIdSupport, Serializable {
     String status;
 
     @Builder.Default
-    String isDeleted = "N";
+    Boolean isDeleted = false;
 }

@@ -32,12 +32,12 @@ public class TypeConvertor {
                 .collect(Collectors.toList());
     }
 
-    public static <T, R> RpcResult<R> convertSuccess(T src, Class<R> targetClz) {
+    public static <T, R> RpcResult<R> convertAndCreateRpcResult(T src, Class<R> targetClz) {
         return RpcResult.success(convert(src, targetClz));
     }
 
-    public static <T, R> RpcResult<R> convertSuccess(Supplier<T> src, Class<R> targetClz) {
-        return convertSuccess(src.get(), targetClz);
+    public static <T, R> RpcResult<R> convertAndCreateRpcResult(Supplier<T> src, Class<R> targetClz) {
+        return convertAndCreateRpcResult(src.get(), targetClz);
     }
 
 

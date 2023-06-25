@@ -2,14 +2,10 @@ server:
   port: 8080
 
 spring:
-  config:
-    import: classpath:application-id-generator.yml
   application:
     name: ${APP_NAME:notSet}
-  datasource:
-    url: jdbc:mysql://${db_rw_host}:${db_port:3306}/${database:notSet}
-    username: ${db_username:admin}
-    password: ${db_password}
+  config:
+    import: classpath:application-id-generator.yml
 
 dubbo:
   registry:

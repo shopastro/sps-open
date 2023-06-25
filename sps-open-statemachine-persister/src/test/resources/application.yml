@@ -1,0 +1,4 @@
+database: sps
+spring:
+  config:
+    import: classpath:application-statemachine.yml

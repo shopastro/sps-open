@@ -11,4 +11,9 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface InjectId {
+    /**
+     *
+     * @return true: replace id value if not null
+     */
+    String replace() default "false";
 }

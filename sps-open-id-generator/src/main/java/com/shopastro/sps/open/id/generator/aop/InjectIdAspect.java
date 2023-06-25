@@ -6,7 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
+
+import java.lang.reflect.Method;
 
 /**
  * @author ye.ly@shopastro-inc.com
@@ -23,6 +26,10 @@ public class InjectIdAspect {
 
     @Around("@annotation(com.shopastro.sps.open.id.generator.aop.InjectId)")
     public Object inject(ProceedingJoinPoint joinPoint) throws Throwable {
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        Method method = signature.getMethod();
+        InjectId injectId = method.getAnnotation(InjectId.class);
+        boolean replace = "true".equals(injectId.replace());
 
         Object[] args = joinPoint.getArgs();
         if (args == null || args.length < 1) {
@@ -33,7 +40,7 @@ public class InjectIdAspect {
                     InjectIdSupport sis = ((InjectIdSupport) arg);
 
                     Long id = sis.getId();
-                    if (id == null) {
+                    if (id == null || replace) {
                         id = cachedIDGenerator.getUID();
                         sis.setId(id);
                         log.debug("set id for object {},{}: ", id, arg);
