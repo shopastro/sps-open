@@ -1,5 +1,7 @@
 package com.shopastro.sps.open.share.rpc;
 
+import com.shopastro.sps.open.share.page.PageQueryResult;
+import com.shopastro.sps.open.share.page.Pagination;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,7 +29,6 @@ public class RpcResult<T> implements Serializable {
     private HashMap<String, String> header = new HashMap<>();
 
     private T data;
-
     private boolean success = true;
 
     private String errCode;
@@ -35,10 +36,6 @@ public class RpcResult<T> implements Serializable {
     private String errMsg;
 
     private Pagination page;
-
-    private String i18nErrCode;
-
-    private String keyOperation;
 
     public void putHeader(String key, String value) {
         header.put(StringUtils.trimToEmpty(key), StringUtils.trimToEmpty(value));
@@ -52,74 +49,15 @@ public class RpcResult<T> implements Serializable {
         }
     }
 
-    /**
-     * 通用成功请求
-     */
     public static <T> RpcResult<T> success(T data) {
-        return RpcResult.<T>builder().data(data).success(true).build();
+        RpcResult<T> rpcResult = RpcResult.<T>builder().data(data).success(true).build();
+        if (data instanceof PageQueryResult) {
+            PageQueryResult pageQueryResult = (PageQueryResult) data;
+            Pagination pagination = pageQueryResult.getPagination();
+            rpcResult.setPage(pagination);
+        }
+        return rpcResult;
     }
 
-    /**
-     * 分页-成功请求
-     */
-    public static <T> RpcResult<T> success(T data, Integer pageIndex, Integer pageSize, Long total) {
-        Pagination page = Pagination.builder().pageIndex(pageIndex).pageSize(pageSize).total(total).build();
-        return RpcResult.<T>builder().success(true).data(data).page(page).build();
-    }
-
-    /**
-     * 分页-成功请求
-     */
-    public static <T> RpcResult<T> success(T data, Pagination pagination) {
-        Pagination page = Pagination.builder().pageIndex(pagination.getPageIndex()).pageSize(pagination.getPageSize()).total(pagination.getTotal()).build();
-        return RpcResult.<T>builder().success(true).data(data).page(page).build();
-    }
-
-    /**
-     * 通用失败请求
-     */
-    @Deprecated
-    public static <T> RpcResult<T> error(String errCode, String errMsg) {
-        return RpcResult.<T>builder().success(false).errCode(errCode).errMsg(errMsg).build();
-    }
-
-    /**
-     * 通用失败请求
-     */
-    public static <T> RpcResult<T> i18nError(SysErrorMsgEnum sysErrorMsgEnum) {
-        return RpcResult.<T>builder()
-                .success(false)
-                .i18nErrCode(sysErrorMsgEnum.getI18nErrCode())
-                .errCode(sysErrorMsgEnum.getErrCode())
-                .errMsg(sysErrorMsgEnum.getErrMsg()).build();
-    }
-
-    /**
-     * 通用失败请求
-     */
-    public static <T> RpcResult<T> i18nError(String i18nErrCode, String errCode, String errMsg) {
-        return RpcResult.<T>builder()
-                .success(false)
-                .i18nErrCode(i18nErrCode)
-                .errCode(errCode)
-                .errMsg(errMsg).build();
-    }
-
-    /**
-     * 通用失败请求
-     */
-    public static <T> RpcResult<T> i18nError(String i18nErrCode, String errCode, String errMsg, String keyOperation) {
-        return RpcResult.<T>builder()
-                .success(false)
-                .i18nErrCode(i18nErrCode)
-                .errCode(errCode)
-                .errMsg(errMsg)
-                .keyOperation(keyOperation).build();
-    }
-
-
-    public static <T> RpcResult<T> i18nError(String i18nErrCode) {
-        return i18nError(i18nErrCode, i18nErrCode, i18nErrCode);
-    }
 }
 

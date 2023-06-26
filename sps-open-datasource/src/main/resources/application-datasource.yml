@@ -10,3 +10,10 @@ mybatis:
   mapper-locations: classpath*:sqlmapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
+
+# https://github.com/pagehelper/pagehelper-spring-boot/blob/master/pagehelper-spring-boot-autoconfigure/src/main/java/com/github/pagehelper/autoconfigure/PageHelperStandardProperties.java
+pagehelper:
+  helperDialect: mysql
+  reasonable: false
+  supportMethodsArguments: true
+  params: count=countSql

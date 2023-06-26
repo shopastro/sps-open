@@ -1,4 +1,4 @@
-package test;
+package com.shopastro.sps.open.datasource;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

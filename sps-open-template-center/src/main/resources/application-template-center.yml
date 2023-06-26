@@ -17,6 +17,7 @@ dubbo:
   consumer:
     timeout: 10000
     retries: 0
+    check: false
   protocol:
     name: dubbo
     threadname: dubbo-thread

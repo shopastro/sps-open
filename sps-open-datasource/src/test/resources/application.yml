@@ -1,3 +1,4 @@
+database: sps
 spring:
   config:
     import: classpath:application-datasource.yml
@@ -5,3 +6,5 @@ spring:
     url: jdbc:mysql://dev.sa:3306/sps
     username: admin
     password: astro1tNXr
+mybatis.configuration:
+  log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
