@@ -67,7 +67,7 @@ public class PageQueryAspect {
                         .hasNextPage(pageInfo.isHasNextPage())
                         .hasPreviousPage(pageInfo.isHasPreviousPage())
                         .build();
-                pageQueryResult.setPagination(pagination);
+                pageQueryResult.setPage(pagination);
                 result = pageQueryResult;
             }
 

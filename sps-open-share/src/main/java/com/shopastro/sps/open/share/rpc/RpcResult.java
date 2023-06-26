@@ -53,7 +53,7 @@ public class RpcResult<T> implements Serializable {
         RpcResult<T> rpcResult = RpcResult.<T>builder().data(data).success(true).build();
         if (data instanceof PageQueryResult) {
             PageQueryResult pageQueryResult = (PageQueryResult) data;
-            Pagination pagination = pageQueryResult.getPagination();
+            Pagination pagination = pageQueryResult.getPage();
             rpcResult.setPage(pagination);
         }
         return rpcResult;
