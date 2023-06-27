@@ -59,5 +59,22 @@ public class RpcResult<T> implements Serializable {
         return rpcResult;
     }
 
+    /**
+     * 通用失败请求
+     */
+    @Deprecated
+    public static <T> RpcResult<T> error(String errCode, String errMsg) {
+        return RpcResult.<T>builder().success(false).errCode(errCode).errMsg(errMsg).build();
+    }
+
+    /**
+     * 通用失败请求
+     */
+    public static <T> RpcResult<T> error(SysErrorMsgEnum sysErrorMsgEnum) {
+        return RpcResult.<T>builder()
+                .success(false)
+                .errCode(sysErrorMsgEnum.getErrCode())
+                .errMsg(sysErrorMsgEnum.getErrMsg()).build();
+    }
 }
 
