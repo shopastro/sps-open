@@ -13,6 +13,7 @@
         <module>sps-open-share</module>
         <module>sps-open-datasource</module>
         <module>sps-open-id-generator</module>
+        <module>sps-open-framework</module>
         <module>sps-open-statemachine</module>
         <module>sps-open-statemachine-persister</module>
         <module>sps-open-test</module>

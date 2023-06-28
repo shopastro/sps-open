@@ -48,6 +48,12 @@
 
             <dependency>
                 <groupId>com.shopastro.sps.open</groupId>
+                <artifactId>sps-open-framework</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.shopastro.sps.open</groupId>
                 <artifactId>sps-open-statemachine</artifactId>
                 <version>${project.version}</version>
             </dependency>

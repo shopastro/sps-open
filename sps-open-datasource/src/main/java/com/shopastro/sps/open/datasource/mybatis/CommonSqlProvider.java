@@ -62,6 +62,12 @@ public class CommonSqlProvider {
                         select %s from %s where is_deleted='N' and id=#{id}""".formatted(columns, table));
     }
 
+    public String selectAll(ProviderContext providerContext) {
+        return exec(providerContext, (table, columns) ->
+                """
+                        select %s from %s where is_deleted='N' order by ${orderBy}""".formatted(columns, table));
+    }
+
     @SneakyThrows
     private String getStringValue(Class clz, String name) {
         Field f = FieldUtils.getDeclaredField(clz, name);

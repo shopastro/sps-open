@@ -17,7 +17,10 @@
 
 
     <dependencies>
-
+        <dependency>
+            <groupId>com.shopastro.sps.open</groupId>
+            <artifactId>sps-open-framework</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.dubbo</groupId>

@@ -8,7 +8,7 @@
         <groupId>com.shopastro.sps.open</groupId>
         <artifactId>sps-open-bom</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../sps-open-bom</relativePath>
+        <relativePath>../sps-open-bom/pom.xml</relativePath>
     </parent>
 
     <artifactId>sps-open-statemachine</artifactId>

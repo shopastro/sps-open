@@ -1,5 +1,7 @@
 package com.shopastro.sps.open.share.rpc;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.shopastro.sps.open.share.page.PageQueryResult;
 import com.shopastro.sps.open.share.page.Pagination;
 import lombok.AllArgsConstructor;
@@ -9,7 +11,8 @@ import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
-import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author ye.ly@shopastro-inc.com
@@ -26,7 +29,10 @@ public class RpcResult<T> implements Serializable {
      * 扩展字段
      */
     @Builder.Default
-    private HashMap<String, String> header = new HashMap<>();
+    private Map<String, String> header = Maps.newHashMap();
+
+    @Builder.Default
+    private List<ValidateResultEntry> validateResult = Lists.newArrayList();
 
     private T data;
     private boolean success = true;
