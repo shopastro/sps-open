@@ -45,27 +45,27 @@ public class CommonSqlProvider {
     public String updateById(ProviderContext providerContext) {
         return exec(providerContext, (table, columns) ->
                 """
-                        update %s set gmt_modified=now(),%s where is_deleted='N' and id=#{id}""".formatted(table, makeUpdateSnipe(columns))
+                        update %s set gmt_modified=now(),%s where is_deleted='N' and id=#{id} and shop_id=#{shopId}""".formatted(table, makeUpdateSnipe(columns))
         );
     }
 
     public String deleteById(ProviderContext providerContext) {
         return exec(providerContext, (table, columns) ->
                 """
-                        update %s set gmt_modified=now(),is_deleted='Y' where is_deleted='N' and id=#{id}""".formatted(table)
+                        update %s set gmt_modified=now(),is_deleted='Y' where is_deleted='N' and id=#{id} and shop_id=#{shopId}""".formatted(table)
         );
     }
 
     public String selectById(ProviderContext providerContext) {
         return exec(providerContext, (table, columns) ->
                 """
-                        select %s from %s where is_deleted='N' and id=#{id}""".formatted(columns, table));
+                        select %s from %s where is_deleted='N' and id=#{id} and shop_id=#{shopId}""".formatted(columns, table));
     }
 
     public String selectAll(ProviderContext providerContext) {
         return exec(providerContext, (table, columns) ->
                 """
-                        select %s from %s where is_deleted='N' order by ${orderBy}""".formatted(columns, table));
+                        select %s from %s where is_deleted='N' and shop_id=#{shopId} order by ${orderBy}""".formatted(columns, table));
     }
 
     @SneakyThrows
