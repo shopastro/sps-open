@@ -1,5 +1,6 @@
 package com.shopastro.sps.open.statemachine.impl;
 
+import com.shopastro.sps.open.share.TypeConvertor;
 import com.shopastro.sps.open.statemachine.State;
 import com.shopastro.sps.open.statemachine.StateMachine;
 import com.shopastro.sps.open.statemachine.Transition;
@@ -56,14 +57,13 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
 
     @Override
     public S fireEvent(S sourceStateId, E event, C ctx) {
-        State<S,E,C> state = null;
+        State<S, E, C> state = null;
         S targetStateId = null;
         Throwable ex = null;
-
+        C beforeContext = (C) TypeConvertor.convert(ctx, ctx.getClass());
         try {
             isReady();
             Transition<S, E, C> transition = routeTransition(sourceStateId, event, ctx);
-
             if (transition == null) {
                 Debugger.debug("There is no Transition for " + event);
                 failCallback.onFail(sourceStateId, event, ctx);
@@ -71,12 +71,12 @@ public class StateMachineImpl<S, E, C> implements StateMachine<S, E, C> {
             }
             beforeFireEventCallback.before(sourceStateId, event, ctx);
             state = transition.transit(ctx, false);
-            targetStateId=state.getId();
+            targetStateId = state.getId();
         } catch (Throwable e) {
             ex = e;
             throw e;
         } finally {
-            afterFireEventCallback.after(sourceStateId, targetStateId, event, ctx, ex);
+            afterFireEventCallback.after(sourceStateId, targetStateId, event, beforeContext, ctx, ex);
         }
 
         return state == null ? null : autoTrigger(state, ctx);

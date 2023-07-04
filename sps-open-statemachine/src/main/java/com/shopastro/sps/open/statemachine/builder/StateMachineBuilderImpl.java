@@ -27,7 +27,7 @@ public class StateMachineBuilderImpl<S, E, C> implements StateMachineBuilder<S, 
 
     private BeforeFireEventCallback<S, E, C> beforeFireEventCallback = (sourceStateId, event, ctx) -> {
     };
-    private AfterFireEventCallback<S, E, C> afterFireEventCallback = (sourceStateId, targetStateId, event, ctx, throwable) -> {
+    private AfterFireEventCallback<S, E, C> afterFireEventCallback = (sourceStateId, targetStateId, event, beforeCtx, ctx, throwable) -> {
     };
 
     private Set<E> autoEvents;

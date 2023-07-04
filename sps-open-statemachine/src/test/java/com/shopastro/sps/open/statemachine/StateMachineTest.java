@@ -25,7 +25,7 @@ class StateMachineTest {
             System.out.println("before: " + ctx);
             ctx.put("kk", "vv");
         });
-        builder.setAfterFireEventCallback((sourceStateId, targetStateId, event, ctx,throwable) -> System.out.println("after: " + ctx + "," + sourceStateId + "," + targetStateId));
+        builder.setAfterFireEventCallback((sourceStateId, targetStateId, event, beforeCtx, ctx, throwable) -> System.out.println("after: " + ctx + "," + sourceStateId + "," + targetStateId));
         StateMachine<String, String, Map<String, String>> m1 = builder
                 .addTransition("s0", "s1", "e01", new TrueCondition<>(), new LogOnlyAction<>())
                 .addTransition("s0", "s2", "e02", new TrueCondition<>(), new LogOnlyAction<>())

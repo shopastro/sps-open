@@ -1,5 +1,6 @@
 package com.shopastro.sps.open.statemachine.persister;
 
+import com.google.common.collect.ImmutableMap;
 import com.shopastro.sps.open.share.utils.ExceptionUtils;
 import com.shopastro.sps.open.statemachine.Action;
 import com.shopastro.sps.open.statemachine.Condition;
@@ -64,7 +65,7 @@ public abstract class BaseStateMachineFactory<S, E, C extends Context> implement
         builder.initStates(Arrays.stream(getInitStates()).collect(Collectors.toSet()));
         builder.terminalStates(Arrays.stream(getTerminateStates()).collect(Collectors.toSet()));
         builder.setFailCallback(new AlertFailCallback<>());
-        builder.setAfterFireEventCallback((sourceStateId, targetStateId, event, ctx, throwable) -> {
+        builder.setAfterFireEventCallback((sourceStateId, targetStateId, event, beforeCtx, ctx, throwable) -> {
             try {
                 List<String> ex = ExceptionUtils.getRootCauseStackTrace(throwable, getExceptionFilters());
                 stateMachineTraceMapper.insert(
@@ -77,7 +78,9 @@ public abstract class BaseStateMachineFactory<S, E, C extends Context> implement
                                 .afterState(targetStateId)
                                 .error(throwable != null)
                                 .exception(ex.isEmpty() ? null : ex)
-                                .context(ctx)
+                                .context(
+                                        ImmutableMap.of("before", beforeCtx, "after", ctx)
+                                )
                                 .build()
                 );
             } catch (Throwable e) {
