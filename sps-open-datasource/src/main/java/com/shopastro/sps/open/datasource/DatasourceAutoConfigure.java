@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Map;
+
 /**
  * UID 的自动配置
  *
@@ -23,13 +25,7 @@ public class DatasourceAutoConfigure {
 
     @Bean
     @ConditionalOnMissingBean
-    public JsonTypeRegister jsonTypeRegister() {
-        return new JsonTypeRegister();
-    }
-
-    @Bean
-    @ConditionalOnMissingBean
-    public JsonTypeConfiguration jsonTypeConfiguration(JsonTypeRegister jsonTypeRegister) {
-        return new JsonTypeConfiguration(jsonTypeRegister);
+    public JsonTypeConfiguration jsonTypeConfiguration(Map<String,JsonTypeRegister> jsonTypeRegisters) {
+        return new JsonTypeConfiguration(jsonTypeRegisters);
     }
 }

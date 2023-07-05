@@ -3,22 +3,29 @@ package com.shopastro.sps.open.datasource.mybatis;
 import org.apache.ibatis.session.Configuration;
 import org.mybatis.spring.boot.autoconfigure.ConfigurationCustomizer;
 
+import java.util.Map;
+
 /**
  * @author ye.ly@shopastro-inc.com
  */
 public class JsonTypeConfiguration implements ConfigurationCustomizer {
 
-    final JsonTypeRegister jsonTypeRegister;
+    final Map<String,JsonTypeRegister> registers;
 
-    public JsonTypeConfiguration(JsonTypeRegister jsonTypeRegister) {
-        this.jsonTypeRegister = jsonTypeRegister;
+    public JsonTypeConfiguration(Map<String, JsonTypeRegister> registers) {
+        this.registers = registers;
     }
+
 
     @Override
     public void customize(Configuration configuration) {
-        for (Class type : jsonTypeRegister.types) {
-            configuration.getTypeHandlerRegistry().register(type, null, new JsonTypeHandler<>(type));
+
+        for (JsonTypeRegister register : registers.values()) {
+            for (Class type : register.getRegisterTypes()) {
+                configuration.getTypeHandlerRegistry().register(type, null, new JsonTypeHandler<>(type));
+            }
         }
+
         configuration.getTypeHandlerRegistry().register(Boolean.class, null, new BooleanTypeHandler());
         configuration.getTypeHandlerRegistry().register(boolean.class, null, new BooleanTypeHandler());
     }
