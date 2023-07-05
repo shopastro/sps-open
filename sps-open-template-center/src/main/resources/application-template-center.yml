@@ -5,27 +5,4 @@ spring:
   application:
     name: ${APP_NAME:notSet}
   config:
-    import: classpath:application-id-generator.yml
-
-dubbo:
-  registry:
-    register: true
-    protocol: zookeeper
-    address: ${zk_address}
-  application:
-    name: ${APP_NAME:notSet}
-  consumer:
-    timeout: 10000
-    retries: 0
-    check: false
-  protocol:
-    name: dubbo
-    threadname: dubbo-thread
-    threadpool: eager
-    dispatcher: message
-    threads: 200
-    corethreads: 50
-    queues: 2000
-  service:
-    shutdown:
-      wait: 60
+    import: classpath:application-id-generator.yml,classpath:application-framework.yml
