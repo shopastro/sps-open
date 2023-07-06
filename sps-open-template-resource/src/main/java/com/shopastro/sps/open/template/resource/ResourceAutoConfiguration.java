@@ -1,6 +1,7 @@
 package com.shopastro.sps.open.template.resource;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,6 +15,7 @@ public class ResourceAutoConfiguration {
     String appName;
 
 
+    @ConditionalOnMissingBean(name = "healthController")
     @Bean
     public HealthController healthController() {
         return new HealthController(appName);
