@@ -57,9 +57,17 @@ public abstract class BaseStateMachineFactory<S, E, C extends Context> implement
 
             Objects.requireNonNull(condition, "condition " + row[3] + " not found");
             Objects.requireNonNull(action, "action " + row[4] + " not found");
+            boolean auto = row.length > 5 && (boolean) row[5];
 
-            builder.externalTransition()
-                    .from(from).to(to).on(on).when(condition).perform(action);
+            if (auto) {
+                builder.addAutoTransition(
+                        from, to, on, condition, action
+                );
+            } else {
+                builder.addTransition(
+                        from, to, on, condition, action
+                );
+            }
         }
 
         builder.initStates(Arrays.stream(getInitStates()).collect(Collectors.toSet()));
