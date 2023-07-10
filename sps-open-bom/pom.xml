@@ -36,6 +36,12 @@
 
             <dependency>
                 <groupId>com.shopastro.sps.open</groupId>
+                <artifactId>sps-open-monitor</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.shopastro.sps.open</groupId>
                 <artifactId>sps-open-datasource</artifactId>
                 <version>${project.version}</version>
             </dependency>

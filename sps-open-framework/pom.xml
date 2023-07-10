@@ -23,6 +23,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.shopastro.sps.open</groupId>
+            <artifactId>sps-open-monitor</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>

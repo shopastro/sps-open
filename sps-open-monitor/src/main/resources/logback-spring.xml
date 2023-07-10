@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <property name="CONSOLE_LOG_PATTERN" value="%red(%d{yyyy-MM-dd HH:mm:ss}) %green([%thread %X{trace_id} %X{span_id}]) %highlight(%-5level) %boldMagenta(%logger):%yellow(%-3L) - %cyan(%msg%n)"/>
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+    <logger name="com.ibatis.common.jdbc" level="WARN"/>
+    <logger name="com.ibatis.sqlmap.engine" level="WARN"/>
+    <logger name="java.sql" level="WARN"/>
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="com.shopastro.id.generator" level="ERROR"/>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+</configuration>
