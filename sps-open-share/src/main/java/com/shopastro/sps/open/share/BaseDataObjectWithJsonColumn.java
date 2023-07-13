@@ -31,7 +31,7 @@ public class BaseDataObjectWithJsonColumn extends BaseDataObject {
     public String getJsonData() {
         SimplePropertyPreFilter filter = new SimplePropertyPreFilter();
         filter.getExcludes().addAll(this.getJsonIgnoreFieldNames());
-        return JSON.toJSONString(this, SerializerFeature.DisableCircularReferenceDetect);
+        return JSON.toJSONString(this,filter, SerializerFeature.DisableCircularReferenceDetect);
     }
 
     @JsonIgnore
