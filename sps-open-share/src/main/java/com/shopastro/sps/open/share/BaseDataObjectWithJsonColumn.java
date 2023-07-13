@@ -3,13 +3,13 @@ package com.shopastro.sps.open.share;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Sets;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.beans.BeanUtils;
 
-import java.util.Date;
 import java.util.Set;
 
 
@@ -29,6 +29,8 @@ public class BaseDataObjectWithJsonColumn extends BaseDataObject {
     @JsonIgnore
     @JSONField(serialize = false)
     public String getJsonData() {
+        SimplePropertyPreFilter filter = new SimplePropertyPreFilter();
+        filter.getExcludes().addAll(this.getJsonIgnoreFieldNames());
         return JSON.toJSONString(this, SerializerFeature.DisableCircularReferenceDetect);
     }
 
