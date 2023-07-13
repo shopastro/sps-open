@@ -1,5 +1,6 @@
 package com.shopastro.sps.open.share.page;
 
+import com.shopastro.sps.open.share.BaseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +14,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BasePageQuery implements PageQuerySupport {
+public class BasePageQuery extends BaseDTO implements PageQuerySupport {
 
     @Builder.Default
     int pageIndex = 1;
