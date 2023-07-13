@@ -19,6 +19,16 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BaseDTO implements Serializable {
+    public final static String ATTACHMENT_KEY_IP = "_ip";
+
+    /**
+     * 店铺
+     */
+    Long shopId;
+    /**
+     * 站点
+     */
+    String websiteId;
     /**
      * 用于RPC透传
      */

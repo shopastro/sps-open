@@ -2,6 +2,7 @@ package com.shopastro.sps.open.datasource.mybatis;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.apache.ibatis.type.BaseTypeHandler;
@@ -14,11 +15,14 @@ import java.sql.*;
  * @author ye.ly@shopastro-inc.com
  */
 public class JsonTypeHandler<T> extends BaseTypeHandler<T> {
-    private final static ObjectMapper mapper = new ObjectMapper();
+    private final static ObjectMapper mapper;
 
     static {
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        mapper = new ObjectMapper()
+                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+                .enable(SerializationFeature.INDENT_OUTPUT)
+                .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+        ;
     }
 
 
